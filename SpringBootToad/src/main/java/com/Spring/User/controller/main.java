@@ -1,6 +1,7 @@
 package com.Spring.User.controller;
 
 import java.sql.SQLException;
+import java.util.Random;
 
 import com.Spring.User.dao.DaoFactory;
 import com.Spring.User.dao.UserDao;
@@ -12,11 +13,13 @@ public class main {
 		UserDao userdao = new DaoFactory().userDao();
 
 		User user = new User();
-		user.setId("1");
-		user.setName("ÅÂÇö");
+		user.setId("" + new Random().nextInt(10000));
+		user.setName("íƒœí˜„ê³µ");
 		user.setPassword("123");
 		
 		userdao.add(user);
+		
+		System.out.println("ê²°ê³¼2 : " + userdao.get(user.getId()));
 		
 	}
 

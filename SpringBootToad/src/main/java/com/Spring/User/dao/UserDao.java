@@ -18,13 +18,15 @@ public class UserDao {
 	public void add(User user) throws ClassNotFoundException, SQLException{
 		Connection c = connectionMaker.getConnection();
 		
-		PreparedStatement ps = c.prepareStatement("insert into USERS(id, name, password) values(?,?,?)");
+		PreparedStatement ps = c.prepareStatement("insert into users(id, name, password) values(?,?,?)");
 		
 		ps.setString(1, user.getId());
 		ps.setString(2, user.getName());
 		ps.setString(3, user.getPassword());
 				
-		System.out.println("½ÇÇà °á°ú : " + ps.executeUpdate());
+		ps.executeUpdate();
+		
+		System.out.println("ê²°ê³¼ ë„¤ìž„ : " + user.getName());
 		
 		ps.close();
 		c.close();
@@ -33,11 +35,13 @@ public class UserDao {
 	public User get(String id) throws ClassNotFoundException, SQLException{
 		Connection c = connectionMaker.getConnection();
 		
-		PreparedStatement ps = c.prepareStatement("select * from USERS where id = ?");
+		PreparedStatement ps = c.prepareStatement("select * from users where id = ?");
 		
 		ps.setString(1, id);
 		
 		ResultSet rs = ps.executeQuery();
+		rs.next();
+		
 		User user = new User();
 		user.setId(rs.getString(1));
 		user.setName(rs.getString(2));
