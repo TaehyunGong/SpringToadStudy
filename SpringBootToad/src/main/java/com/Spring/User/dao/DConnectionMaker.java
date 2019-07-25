@@ -9,7 +9,7 @@ public class DConnectionMaker implements ConnectionMaker {
 	@Override
 	public Connection getConnection() throws SQLException, ClassNotFoundException {
 		Class.forName("com.mysql.jdbc.Driver");
-		return DriverManager.getConnection("jdbc:mysql://106.10.53.223:3306/toad","root","1234");
+		return DriverManager.getConnection("jdbc:mysql://45.119.144.118:3306/toad","root","tony950620!!");
 	}
 
 }
