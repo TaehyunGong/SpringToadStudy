@@ -8,12 +8,11 @@ public class CountingDaoFactory {
 
 	@Bean
 	public UserDao userDao() {
-		return new UserDao(connectionMaker());
+		return new UserDao(null);
 	}
 	
 	@Bean
 	public ConnectionMaker connectionMaker() {
-		System.out.println("실행됨");
 		return new CountingConnectionMaker(realConnectionMaker());
 	}
 	
