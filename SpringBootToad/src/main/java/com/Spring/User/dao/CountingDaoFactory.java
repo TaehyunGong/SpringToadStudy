@@ -20,6 +20,5 @@ public class CountingDaoFactory {
 	public ConnectionMaker realConnectionMaker() {
 		return new DConnectionMaker();
 	}
-	
 }
 

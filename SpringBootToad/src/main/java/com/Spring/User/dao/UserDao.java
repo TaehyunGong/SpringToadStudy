@@ -31,8 +31,6 @@ public class UserDao {
 				
 		ps.executeUpdate();
 		
-		System.out.println("결과 네임 : " + user.getName());
-		
 		ps.close();
 		c.close();
 	}
@@ -57,6 +55,32 @@ public class UserDao {
 		c.close();
 		
 		return user;
+	}
+	
+	public void deleteAll() throws SQLException {
+		Connection conn = dataSource.getConnection();
+		
+		PreparedStatement ps = conn.prepareStatement("DELETE FROM USERS");
+		ps.executeUpdate();
+		
+		conn.close();
+		ps.close();
+	}
+	
+	public int getCount() throws SQLException {
+		Connection conn = dataSource.getConnection();
+		
+		PreparedStatement ps = conn.prepareStatement("SELECT COUNT(*) FROM USERS");
+		ResultSet rs = ps.executeQuery();
+		rs.next();
+		
+		int count = rs.getInt(1);
+		
+		conn.close();
+		ps.close();
+		rs.close();
+		
+		return count; 
 	}
 
 
