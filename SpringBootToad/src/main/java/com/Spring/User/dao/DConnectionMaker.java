@@ -6,6 +6,8 @@ import java.sql.SQLException;
 
 public class DConnectionMaker implements ConnectionMaker {
 
+	private static String a;
+	
 	@Override
 	public Connection getConnection() throws SQLException, ClassNotFoundException {
 		Class.forName("com.mysql.jdbc.Driver");
