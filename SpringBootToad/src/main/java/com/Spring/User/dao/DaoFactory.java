@@ -14,9 +14,9 @@ public class DaoFactory {
 		SimpleDriverDataSource dataSource = new SimpleDriverDataSource();
 		
 		dataSource.setDriverClass(com.mysql.jdbc.Driver.class);
-		dataSource.setUrl("jdbc:mysql://45.119.144.118:3306/toad");
+		dataSource.setUrl("jdbc:mysql://127.0.0.1:3306/toad");
 		dataSource.setUsername("root");
-		dataSource.setPassword("tony950620!!");
+		dataSource.setPassword("test");
 		
 		return dataSource;
 	}
