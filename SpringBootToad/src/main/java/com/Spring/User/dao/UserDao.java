@@ -7,6 +7,8 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
+import org.springframework.dao.EmptyResultDataAccessException;
+
 import com.Spring.User.vo.User;
 
 public class UserDao {
@@ -43,16 +45,22 @@ public class UserDao {
 		ps.setString(1, id);
 		
 		ResultSet rs = ps.executeQuery();
-		rs.next();
 		
-		User user = new User();
-		user.setId(rs.getString(1));
-		user.setName(rs.getString(2));
-		user.setPassword(rs.getString(3));
+		User user= null;
+		if(rs.next()) {
+			user = new User();
+			user.setId(rs.getString(1));
+			user.setName(rs.getString(2));
+			user.setPassword(rs.getString(3));
+		}
 				
 		rs.close();
 		ps.close();
 		c.close();
+		
+		if (user == null) {
+			throw new EmptyResultDataAccessException(1);
+		}
 		
 		return user;
 	}
